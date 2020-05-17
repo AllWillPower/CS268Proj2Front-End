@@ -26,8 +26,8 @@ export function Torrent(props) {
         dispatch(leaveEditMode(torrent));
     }
 
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [name, setName] = useState(torrent.name);
+    const [description, setDescription] = useState(torrent.description);
 
     const onSave = () => {
         dispatch(startSavingTorrent(name, description, torrent._id));

@@ -39,7 +39,7 @@ export function SearchBar() {
             <select className="searchBy" onChange={handleChange2}>
                 <option value="name">Torrent Name</option>
                 <option value="author">Torrent Author</option>
-                <option value="distributor">Distribution</option>
+                <option value="distribution">Distribution</option>
             </select>
             <input className="searchInput" type="text" onChange={handleChange} placeholder="Search Torrents..."></input>
             <button onClick={search}>Search</button>
