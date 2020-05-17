@@ -5,12 +5,13 @@ import axios from 'axios';
 
 export function TorrentAdder() {
     const dispatch = useDispatch();
+    const host = 'https://torrentapi.duckdns.org:8442';
     //const [torrentfileName, setTorrentFileName] = useState('');
     const onAdd = () => {
         if(filesize.match(/^\d+$/)){
             const data = new FormData();
             data.append('torrentFile', file);
-            axios.post("http://sellej.duckdns.org:3000/api/torrentfiles/upload", data, {})
+            axios.post(`${host}/api/torrentfiles/upload`, data, {})
             .then(res => {
                 // console.log(res);
                 if(!res.data.error)

@@ -35,21 +35,14 @@ export function SearchBar() {
 
     return(
         <div className="searchBar">
-            <div className="searchBar-left">
-                <span className="searchBarLabel">Search By: </span>
-                <select className="searchBy" onChange={handleChange2}>
-                    <option value="name">Torrent Name</option>
-                    <option value="author">Torrent Author</option>
-                    <option value="distributor">Distribution</option>
-                </select>
-            
-            
-                <input className="searchInput" type="text" onChange={handleChange} placeholder="Search Torrents..."></input>
-                <button onClick={search}>Search</button>
-            </div>
-            
-            
-            
+            <span className="searchBarLabel">Search By: </span>
+            <select className="searchBy" onChange={handleChange2}>
+                <option value="name">Torrent Name</option>
+                <option value="author">Torrent Author</option>
+                <option value="distributor">Distribution</option>
+            </select>
+            <input className="searchInput" type="text" onChange={handleChange} placeholder="Search Torrents..."></input>
+            <button onClick={search}>Search</button>
         </div>
     );
 }

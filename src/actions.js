@@ -70,7 +70,9 @@ function checkForErrors(response){
 }
 
 // const host = 'http://sellej.duckdns.org:3000';
-const host = 'http://157.245.142.207:3000'
+//const host = 'http://157.245.142.207:3000';
+const host = 'https://torrentapi.duckdns.org:8442';
+
 
 export function loadAllTorrents(){
     return dispatch => {
@@ -282,7 +284,7 @@ export function startDeletingTorrent(torrent){
     };
     return dispatch => {
         dispatch(startWaiting());
-        fetch(`${host}/api/torrents/${torrent.filename}`, options)
+        fetch(`${host}/api/torrentfiles/${torrent.filename}`, options)
         .then(checkForErrors)
         .then(response => response.json())
         .then(data => {

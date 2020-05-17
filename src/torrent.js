@@ -37,6 +37,8 @@ export function Torrent(props) {
         dispatch(startDeletingTorrent(torrent));
     }
 
+    const host = 'https://torrentapi.duckdns.org:8442';
+
     if(torrent.isEditing){
         return (
             <tr className="torrent">
@@ -71,7 +73,7 @@ export function Torrent(props) {
                 <a href = {`${torrent.distribution.distributionWebsite}`} target="_blank" rel="noopener noreferrer">{torrent.distribution.distributionName}</a>
             </td>
             <td>
-                <a href= {`http://torrentapi.duckdns.org:8442/api/torrentfiles/${torrent.filename}`} download>{torrent.name}.iso</a>
+                <a href= {`${host}/api/torrentfiles/${torrent.filename}`} download>{torrent.name}.iso</a>
             </td>
             <td>
                 <div className="authorDatePair">
@@ -89,53 +91,54 @@ export function Torrent(props) {
         </tr>
         );
     }
-
-    return(
-        <tr className="torrent">
-            <td className="torrent-left">
-                <div className="nameButtonGroup">
-                    <span className="name">{torrent.name}</span>
-                    <img className = "logo" src = {`${torrent.distribution.distributionName}.png`} alt= {torrent.distribution.distributionName}></img>
-                    <button onClick={onEdit}>Edit Torrent</button>
-                </div>
-            </td>
-            <td>
-                <span className="size">{torrent.filesize} Mb</span>
-            </td>
-            <td>
-                <div className="leechers-full">
-                    <div className="increments">
-                        <button onClick={incLeechers}>+</button>
-                        <button onClick={decLeechers}>-</button>
+    else{
+        return(
+            <tr className="torrent">
+                <td className="torrent-left">
+                    <div className="nameButtonGroup">
+                        <span className="name">{torrent.name}</span>
+                        <img className = "logo" src = {`${torrent.distribution.distributionName}.png`} alt= {torrent.distribution.distributionName}></img>
+                        <button onClick={onEdit}>Edit Torrent</button>
                     </div>
-                    <span className="leechers">{torrent.leechers}</span>
-                </div>
-            </td>
-            <td>
-                <div className="seeders-full">
-                    <div className="increments">
-                        <button onClick={incSeeders}>+</button>
-                        <button onClick={decSeeders}>-</button>
+                </td>
+                <td>
+                    <span className="size">{torrent.filesize} Mb</span>
+                </td>
+                <td>
+                    <div className="leechers-full">
+                        <div className="increments">
+                            <button onClick={incLeechers}>+</button>
+                            <button onClick={decLeechers}>-</button>
+                        </div>
+                        <span className="leechers">{torrent.leechers}</span>
                     </div>
-                    <span className="seeders">{torrent.seeders}</span>
-                </div>
-            </td>
-            <td>
-            <a href = {`${torrent.distribution.distributionWebsite}`} target="_blank" rel="noopener noreferrer">{torrent.distribution.distributionName}</a>
-            </td>
-            <td>
-                <a href= {`http://torrentapi.duckdns.org:8442/api/torrentfiles/${torrent.filename}`} download>{torrent.name}.iso</a>
-            </td>
-            <td>
-                <div className="authorDatePair">
-                    <span className="uploaderName">{torrent.author}</span>
-                    <span className="datePosted">{torrent.dateCreated.substring(0, 10)}</span>
-                </div>
-            </td>
-            <td className="torrent-right">
-                <span className="description">{torrent.description}</span>
-
-            </td>
-        </tr>
-    );
+                </td>
+                <td>
+                    <div className="seeders-full">
+                        <div className="increments">
+                            <button onClick={incSeeders}>+</button>
+                            <button onClick={decSeeders}>-</button>
+                        </div>
+                        <span className="seeders">{torrent.seeders}</span>
+                    </div>
+                </td>
+                <td>
+                <a href = {`${torrent.distribution.distributionWebsite}`} target="_blank" rel="noopener noreferrer">{torrent.distribution.distributionName}</a>
+                </td>
+                <td>
+                    <a href= {`${host}/api/torrentfiles/${torrent.filename}`} download>{torrent.name}.iso</a>
+                </td>
+                <td>
+                    <div className="authorDatePair">
+                        <span className="uploaderName">{torrent.author}</span>
+                        <span className="datePosted">{torrent.dateCreated.substring(0, 10)}</span>
+                    </div>
+                </td>
+                <td className="torrent-right">
+                    <span className="description">{torrent.description}</span>
+    
+                </td>
+            </tr>
+        );
+    }
 }
